@@ -12,6 +12,8 @@ import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import { TextField } from "@mui/material";
 import { UserCircleIcon } from "@heroicons/react/24/solid";
+import { useNavigate } from "react-router-dom";
+
 
 export default function PersonalDetails() {
   const [selectedCountry, setSelectedCountry] = useState("");
@@ -21,6 +23,10 @@ export default function PersonalDetails() {
   const [phoneError, setPhoneError] = useState("");
   const phoneInputRef = useRef(null);
   const iti = useRef(null);
+  const navigate = useNavigate();
+  const handleNextStep = () => {
+    navigate('/BusinessDetails');
+  };
 
   useEffect(() => {
     if (phoneInputRef.current) {
@@ -117,7 +123,7 @@ export default function PersonalDetails() {
               <StepLabel>Business Details</StepLabel>
             </Step>
             <Step>
-              <StepLabel>Serivce Detials</StepLabel>
+              <StepLabel>Service Details</StepLabel>
             </Step>
             <Step>
               <StepLabel>Request Quote</StepLabel>
@@ -394,8 +400,8 @@ export default function PersonalDetails() {
           <Button variant="outlined" color="secondary">
             Cancel
           </Button>
-          <Button type="submit" variant="contained" color="primary">
-            Continue
+          <Button variant="contained" type="submit" color="primary" f onClick={handleNextStep}>
+            Save and Continue
           </Button>
         </div>
       </form>

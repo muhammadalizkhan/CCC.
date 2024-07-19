@@ -15,7 +15,7 @@ import { TextField } from "@mui/material";
 import { UserCircleIcon } from "@heroicons/react/24/solid";
 import { useNavigate } from "react-router-dom";
 
-export default function BusinessDetails() {
+export default function ServiceDetails() {
   const [selectedCountry, setSelectedCountry] = useState("");
   const [selectedState, setSelectedState] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -25,7 +25,7 @@ export default function BusinessDetails() {
   const iti = useRef(null);
   const navigate = useNavigate();
   const handleNextStep = () => {
-    navigate("/ServiceDetails");
+    navigate("/Request");
   };
   useEffect(() => {
     if (phoneInputRef.current) {
@@ -114,7 +114,7 @@ export default function BusinessDetails() {
       <div className="p-8 bg-gray-50 rounded-lg shadow-md w-11/12 md:w-3/5 mx-auto mt-12">
         <form className="space-y-6">
           <div className="mb-8">
-            <Stepper activeStep={1} alternativeLabel className="w-full">
+            <Stepper activeStep={2} alternativeLabel className="w-full">
               <Step>
                 <StepLabel>Personal Details</StepLabel>
               </Step>
