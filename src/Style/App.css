@@ -1,0 +1,116 @@
+/* Optional: Adjust the default padding and margin for forms */
+form {
+  padding: 20px;
+}
+
+/* Adjust the spacing for better UI */
+.space-y-12 {
+  gap: 3rem;
+}
+
+/* Adjust padding for sections */
+.pb-12 {
+  padding-bottom: 3rem;
+}
+
+/* Customize labels and inputs */
+label {
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+input, select, textarea {
+  margin-top: 0.5rem;
+}
+
+/* Additional padding and margin adjustments */
+.mt-1 {
+  margin-top: 0.25rem;
+}
+
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
+.mt-4 {
+  margin-top: 1rem;
+}
+
+.mt-6 {
+  margin-top: 1.5rem;
+}
+
+.mt-10 {
+  margin-top: 2.5rem;
+}
+
+.mb-6 {
+  margin-bottom: 1.5rem;
+}
+
+/* Specific adjustments for the notification section */
+.space-y-10 > * {
+  margin-bottom: 2.5rem;
+}
+
+.highlight {
+    font-weight: bold;
+    animation: colorChange 2s infinite;
+  }
+  
+  @keyframes colorChange {
+    0% { color: skyblue; }
+    25% { color: red; }
+    50% { color: orange; }
+    75% { color: green; }
+    100% { color: skyblue; }
+  }
+  
+  .step-indicator {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .step {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    margin: 0 5px;
+    position: relative;
+  }
+  
+  .step.active {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .step-indicator:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: #ddd;
+    z-index: -1;
+  }
+  
+  .step.active:before {
+    background: #007bff;
+  }
+  
+  .form-input {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    width: 100%;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: auto;
+  }
+  

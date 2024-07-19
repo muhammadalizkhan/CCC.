@@ -1,0 +1,21 @@
+[debug] [2024-07-15T02:46:30.753Z] ----------------------------------------------------------------------
+[debug] [2024-07-15T02:46:30.759Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Muhammad Ali Khan\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2024-07-15T02:46:30.759Z] CLI Version:   13.13.2
+[debug] [2024-07-15T02:46:30.760Z] Platform:      win32
+[debug] [2024-07-15T02:46:30.760Z] Node Version:  v20.11.1
+[debug] [2024-07-15T02:46:30.760Z] Time:          Mon Jul 15 2024 07:46:30 GMT+0500 (Pakistan Standard Time)
+[debug] [2024-07-15T02:46:30.760Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-07-15T02:46:30.770Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-07-15T02:46:30.771Z] > authorizing via signed-in user (youshutup2020@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  E:\Remix React GraphQL MongoDB\cccc
+
