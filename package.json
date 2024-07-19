@@ -43,9 +43,8 @@
     "yup": "^1.4.0"
   },
   "scripts": {
-    "start": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+     "build": "vite build",
+  "start": "vite preview"
   },
   "eslintConfig": {
     "extends": [
