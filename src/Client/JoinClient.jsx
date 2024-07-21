@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 
-export default function AsAClient() {
+export default function JoinClient() {
   const navigate = useNavigate();
 
   const goToPersonalDetails = () => {
@@ -11,7 +11,6 @@ export default function AsAClient() {
 
   return (
     <div>
-      <h1>As A Client</h1>
       <Button variant="contained" color="primary" onClick={goToPersonalDetails}>
         Go to Personal Details
       </Button>

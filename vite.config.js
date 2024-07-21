@@ -4,6 +4,6 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
   build: {
-    outDir: 'build',  // Specify 'build' as the output directory
+    outDir: 'dist',  // Ensure this matches the directory created by the build process
   },
 });

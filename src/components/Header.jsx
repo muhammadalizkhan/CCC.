@@ -1,112 +1,327 @@
-import { useState } from "react";
-import { Dialog, DialogPanel } from "@headlessui/react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { Link } from "react-router-dom";
+import React, { useState } from 'react';
+import {
+  AppBar,
+  Toolbar,
+  Button,
+  MenuItem,
+  Box,
+  IconButton,
+  useMediaQuery,
+  Container,
+  Popover,
+  Fade,
+  ThemeProvider,
+  createTheme,
+  Drawer,
+  List,
+  Divider,
+  ListItemText,
+  ListItemButton,
+  Collapse,
+} from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import ExpandLess from '@mui/icons-material/ExpandLess';
+import ExpandMore from '@mui/icons-material/ExpandMore';
+import { useNavigate } from 'react-router-dom';
 
-const navigation = [
-  { name: "Product", href: "/Client" },
-  { name: "Features", href: "#" },
-  { name: "Marketplace", href: "#" },
-  { name: "Company", href: "#" },
+const theme = createTheme({
+  palette: {
+    mode: 'dark',
+    primary: {
+      main: '#f3f3f3',
+    },
+    background: {
+      default: '#181C27',
+      paper: '#252B37',
+    },
+  },
+});
+
+const menuItems = [
+  {
+    name: 'Explore',
+    subItems: [
+      { name: 'Join as a Writer', href: '/JoinWriter' },
+      { name: 'Join as a Client', href: '/JoinClient' },
+    ],
+  },
+  { name: 'Pricing', href: '/products' },
+  {
+    name: 'Services',
+    subItems: [
+      {
+        name: 'SEO Content Writing',
+        subItems: [
+          { name: 'SaaS Content Marketing', href: '/analytics/reports/documents' },
+          { name: 'Social Media Writing', href: '/analytics/reports/payments' },
+          { name: 'Screenwriting', href: '/analytics/reports/refunds' },
+        ],
+      },
+      {
+        name: 'SEO Content Writing',
+        subItems: [
+          { name: 'SaaS Content Marketing', href: '/analytics/reports/documents' },
+          { name: 'Social Media Writing', href: '/analytics/reports/payments' },
+          { name: 'Screenwriting', href: '/analytics/reports/refunds' },
+        ],
+      },
+      {
+        name: 'SEO Content Writing',
+        subItems: [
+          { name: 'SaaS Content Marketing', href: '/analytics/reports/documents' },
+          { name: 'Social Media Writing', href: '/analytics/reports/payments' },
+          { name: 'Screenwriting', href: '/analytics/reports/refunds' },
+        ],
+      },
+    ],
+  },
+  { name: 'Contact', href: '/contact' },
 ];
 
+const NestedMenuItem = ({ item, handleClose }) => {
+  const [expanded, setExpanded] = useState(false);
 
-export default function Header() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const handleClick = () => {
+    setExpanded(!expanded);
+  };
 
   return (
-    <header className="absolute inset-x-0 top-0 z-50">
-    <nav aria-label="Global" className="flex items-center justify-between p-6 lg:px-8">
-      <div className="flex lg:flex-1">
-        <Link to="#" className="-m-1.5 p-1.5">
-          <span className="sr-only">Your Company</span>
-          <img
-            alt=""
-            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-            className="h-8 w-auto"
-          />
-        </Link>
-      </div>
-      <div className="flex lg:hidden">
-        <button
-          type="button"
-          onClick={() => setMobileMenuOpen(true)}
-          className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
-        >
-          <span className="sr-only">Open main menu</span>
-          <Bars3Icon aria-hidden="true" className="h-6 w-6" />
-        </button>
-      </div>
-      <div className="hidden lg:flex lg:gap-x-12">
-        {navigation.map((item) => (
-          <Link
-            key={item.name}
-            to={item.href}
-            className="text-sm font-semibold leading-6 text-gray-900"
-          >
-            {item.name}
-          </Link>
-        ))}
-      </div>
-      <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-        <Link
-          to="/login"
-          className="rounded-md bg-gray-900 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-        >
-          Login
-        </Link>
-      </div>
-    </nav>
-    <Dialog
-      open={mobileMenuOpen}
-      onClose={setMobileMenuOpen}
-      className="lg:hidden"
-    >
-      <div className="fixed inset-0 z-50" />
-      <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
-        <div className="flex items-center justify-between">
-          <Link to="#" className="-m-1.5 p-1.5">
-            <span className="sr-only">Your Company</span>
-            <img
-              alt=""
-              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-              className="h-8 w-auto"
-            />
-          </Link>
-          <button
-            type="button"
-            onClick={() => setMobileMenuOpen(false)}
-            className="-m-2.5 rounded-md p-2.5 text-gray-700"
-          >
-            <span className="sr-only">Close menu</span>
-            <XMarkIcon aria-hidden="true" className="h-6 w-6" />
-          </button>
-        </div>
-        <div className="mt-6 flow-root">
-          <div className="-my-6 divide-y divide-gray-500/10">
-            <div className="space-y-2 py-6">
-              {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >
-                  {item.name}
-                </Link>
-              ))}
-            </div>
-            <div className="py-6">
-              <Link
-                to="/get-started"
-                className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+    <>
+      <MenuItem
+        onClick={handleClick}
+        sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}
+      >
+        {item.name}
+        {expanded ? <ExpandLess fontSize="small" /> : <ArrowDropDownIcon fontSize="small" />}
+      </MenuItem>
+      <Divider />
+      <Collapse in={expanded} timeout="auto" unmountOnExit>
+        <Box sx={{ pl: 2 }}>
+          {item.subItems.map((subItem, index) =>
+            subItem.subItems ? (
+              <NestedMenuItem key={index} item={subItem} handleClose={handleClose} />
+            ) : (
+              <MenuItem
+                key={index}
+                onClick={() => {
+                  handleClose();
+                  setExpanded(false);
+                }}
+                sx={{ pl: 2 }}
               >
-                Get started
-              </Link>
-            </div>
-          </div>
-        </div>
-      </DialogPanel>
-    </Dialog>
-  </header>
-  )
+                {subItem.name}
+              </MenuItem>
+            )
+          )}
+        </Box>
+      </Collapse>
+    </>
+  );
+};
+
+const renderMobileMenuItem = (item, handleMobileExpand, mobileExpandedItem, depth = 0) => {
+  if (item.subItems) {
+    return (
+      <React.Fragment key={item.name}>
+        <ListItemButton
+          onClick={() => handleMobileExpand(item.name)}
+          sx={{ pl: 2 * (depth + 1) }}
+        >
+          <ListItemText primary={item.name} />
+          {mobileExpandedItem === item.name ? <ExpandLess /> : <ExpandMore />}
+        </ListItemButton>
+        <Collapse in={mobileExpandedItem === item.name} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
+            {item.subItems.map((subItem) => renderMobileMenuItem(subItem, handleMobileExpand, mobileExpandedItem, depth + 1))}
+          </List>
+        </Collapse>
+      </React.Fragment>
+    );
+  } else {
+    return (
+      <ListItemButton key={item.name} sx={{ pl: 2 * (depth + 1) }}>
+        <ListItemText primary={item.name} />
+      </ListItemButton>
+    );
+  }
+};
+
+export default function Header() {
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [currentMenu, setCurrentMenu] = useState(null);
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileExpandedItem, setMobileExpandedItem] = useState(null);
+  const navigate = useNavigate();
+
+  const handleClick = (event, menuName) => {
+    setAnchorEl(event.currentTarget);
+    setCurrentMenu(menuName);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+    setCurrentMenu(null);
+  };
+
+  const handleMobileMenuToggle = () => {
+    setMobileOpen(!mobileOpen);
+  };
+
+  const handleMobileExpand = (itemName) => {
+    setMobileExpandedItem(mobileExpandedItem === itemName ? null : itemName);
+  };
+
+  const goToPage = (href) => {
+    navigate(href);
+    handleClose();
+  };
+
+  return (
+    <ThemeProvider theme={theme}>
+      <AppBar position="static" color="default" elevation={0} sx={{ bgcolor: '#181C27' }}>
+        <Container maxWidth="lg">
+          <Toolbar disableGutters sx={{ justifyContent: 'space-between', height: '50px' }}>
+            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+              <img
+                src="https://create-react-app.dev/img/logo.svg"
+                alt="Logo"
+                style={{ height: 40, marginRight: 16 }} 
+              />
+              {!isMobile && (
+                <Box sx={{ display: 'flex', justifyContent: 'center', flexGrow: 1 }}>
+                  {menuItems.map((item) => (
+                    <Box
+                      key={item.name}
+                      sx={{
+                        position: 'relative',
+                        display: 'inline-block',
+                        '&:hover .dropdown-content': {
+                          display: 'block',
+                        },
+                      }}
+                    >
+                      <Button
+                        color="inherit"
+                        onClick={
+                          item.subItems ? (event) => handleClick(event, item.name) : () => goToPage(item.href)
+                        }
+                        endIcon={item.subItems ? <ArrowDropDownIcon /> : null}
+                        sx={{ textTransform: 'none', color: '#f3f3f3' }}
+                      >
+                        {item.name}
+                      </Button>
+                      {item.subItems && (
+                        <Box
+                          className="dropdown-content"
+                          sx={{
+                            display: currentMenu === item.name ? 'block' : 'none',
+                            position: 'absolute',
+                            top: '100%',
+                            left: 0,
+                            bgcolor: '#252B37',
+                            borderRadius: 1,
+                            minWidth: 150,
+                            zIndex: 1,
+                          }}
+                        >
+                          {item.subItems.map((subItem, index) =>
+                            subItem.subItems ? (
+                              <NestedMenuItem
+                                key={index}
+                                item={subItem}
+                                handleClose={handleClose}
+                              />
+                            ) : (
+                              <MenuItem
+                                key={index}
+                                onClick={() => goToPage(subItem.href)}
+                                sx={{ color: '#f3f3f3', minWidth: 150 }}
+                              >
+                                {subItem.name}
+                              </MenuItem>
+                            )
+                          )}
+                        </Box>
+                      )}
+                    </Box>
+                  ))}
+                </Box>
+              )}
+            </Box>
+            {isMobile ? (
+              <IconButton
+                edge="start"
+                color="inherit"
+                aria-label="menu"
+                onClick={handleMobileMenuToggle}
+              >
+                <MenuIcon />
+              </IconButton>
+            ) : (
+              <Box sx={{ '& button': { m: 1 }, display: 'flex', alignItems: 'center' }}>
+                <Button onClick={() => goToPage('/JoinClient')} variant="outlined" size="medium" color="inherit" sx={{ textTransform: 'none', color: '#f3f3f3' }}>
+                  Join Us
+                </Button>
+                <Button onClick={() => goToPage('/JoinWriter')} variant="outlined" size="medium" color="inherit" sx={{ textTransform: 'none', color: '#f3f3f3' }}>
+                  Request for Demo
+                </Button>
+              </Box>
+            )}
+          </Toolbar>
+        </Container>
+      </AppBar>
+
+      <Popover
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+        TransitionComponent={Fade}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+        transformOrigin={{ vertical: 'top', horizontal: 'left' }}
+      >
+        <Box sx={{ p: 1, bgcolor: '#252B37', borderRadius: 1 }}>
+          {currentMenu &&
+            menuItems
+              .find((item) => item.name === currentMenu)
+              ?.subItems.map((subItem, index) =>
+                subItem.subItems ? (
+                  <NestedMenuItem key={index} item={subItem} handleClose={handleClose} />
+                ) : (
+                  <MenuItem
+                    key={index}
+                    onClick={() => goToPage(subItem.href)}
+                    sx={{ color: '#f3f3f3', minWidth: 150 }}
+                  >
+                    {subItem.name}
+                  </MenuItem>
+                )
+              )}
+        </Box>
+      </Popover>
+
+      <Drawer
+        anchor="left"
+        open={mobileOpen}
+        onClose={handleMobileMenuToggle}
+        sx={{
+          '& .MuiDrawer-paper': {
+            boxSizing: 'border-box',
+            width: 240,
+            bgcolor: '#252B37',
+          },
+        }}
+      >
+        <List>
+          {menuItems.map((item) => (
+            <React.Fragment key={item.name}>
+              {renderMobileMenuItem(item, handleMobileExpand, mobileExpandedItem)}
+              <Divider />
+            </React.Fragment>
+          ))}
+        </List>
+      </Drawer>
+    </ThemeProvider>
+  );
 }
